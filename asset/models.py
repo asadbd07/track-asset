@@ -29,6 +29,10 @@ class DeviceStatus(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    class Meta:
+        verbose_name = "Device Status"
+        verbose_name_plural = "Device Status"
+
 
 class Device(models.Model):
     name = models.CharField(max_length=100)
@@ -44,11 +48,11 @@ class DeviceLog(models.Model):
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     check_out_at = models.DateTimeField(null=True, blank=True)
-    check_in_datetime = models.DateTimeField(null=True, blank=True)
+    check_in_at = models.DateTimeField(null=True, blank=True)
     status_when_checked_out = models.ForeignKey(
-        DeviceStatus, on_delete=models.CASCADE, related_name="device_checkin_status")
+        DeviceStatus, on_delete=models.CASCADE, null=True, blank=True, related_name="device_checkin_status")
     status_when_returned = models.ForeignKey(
-        DeviceStatus, on_delete=models.CASCADE, related_name="device_return_status")
+        DeviceStatus, on_delete=models.CASCADE, null=True, blank=True, related_name="device_return_status")
 
     def __str__(self):
         return f"{self.device}"
