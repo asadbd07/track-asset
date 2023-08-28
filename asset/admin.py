@@ -40,7 +40,7 @@ admin.site.register(Device, DeviceAdmin)
 
 
 class DeviceLogAdmin(admin.ModelAdmin):
-    list_display = ('type', 'device', 'employee', 'check_out_at', 'check_in_at',
+    list_display = ('type', 'device', 'employee', 'assigned_till', 'check_out_at', 'check_in_at',
                     'status_when_checked_out', 'status_when_returned')
     list_filter = ('type', 'device', 'employee',)
     search_fields = ('device', 'employee',)
