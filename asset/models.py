@@ -45,6 +45,11 @@ class Device(models.Model):
 
 
 class DeviceLog(models.Model):
+    TYPE_CHOICES = [
+        ('checkin', 'Check In'),
+        ('checkout', 'Check Out'),
+    ]
+    type = models.CharField(choices=TYPE_CHOICES, max_length=20, null=True)
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
     check_out_at = models.DateTimeField(null=True, blank=True)
